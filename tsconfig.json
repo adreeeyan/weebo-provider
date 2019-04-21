@@ -10,7 +10,7 @@
     ],
     "target": "es2015",
     "strict": true,
-    "outDir": "./lib",
+    "outDir": "./dist",
     "preserveConstEnums": true,
     "removeComments": true,
     "inlineSourceMap": true,

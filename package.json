@@ -19,17 +19,17 @@
     "node"
   ],
   "files": [
-    "lib"
+    "dist"
   ],
-  "main": "lib/index.js",
-  "typings": "lib/index.d.ts",
+  "main": "dist/index.js",
+  "typings": "dist/index.d.ts",
   "scripts": {
-    "clean": "rimraf lib && rimraf coverage",
+    "clean": "rimraf dist && rimraf coverage",
     "format": "prettier --write \"{src,__tests__}/**/*.ts\"",
     "lint": "tslint --force --format verbose \"src/**/*.ts\"",
     "prepublishOnly": "npm run build",
     "prebuild": "npm run clean && npm run format && npm run lint && echo Using TypeScript && tsc --version",
-    "build": "tsc --pretty && browserify lib/index.js -do lib/dist/app.js -s WeeboProvider",
+    "build": "tsc --pretty",
     "test": "jest",
     "coverage": "jest --coverage",
     "start": "tsc src/index.ts",
@@ -48,7 +48,6 @@
   "devDependencies": {
     "@types/jest": "^22.0.1",
     "@types/node": "^8.0.0",
-    "browserify": "^16.2.3",
     "coveralls": "^2.0.0",
     "jest": "^22.0.4",
     "prettier": "^1.5.2",
