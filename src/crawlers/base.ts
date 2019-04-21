@@ -23,7 +23,7 @@ export default abstract class BaseCrawler {
 
   public async getHTML(url: string): Promise<CheerioStatic> {
     const searchUrl = url;
-    const response = await fetch(searchUrl); // fetch page
+    const response = await this.proxyRequestUrl(searchUrl); // fetch page
     const htmlString = await response.text(); // get response text
     return cheerio.load(htmlString); // parse HTML string
   }
@@ -84,6 +84,15 @@ export default abstract class BaseCrawler {
 
   public isItemsEmpty = (): boolean => {
     return this.items.length == 0;
+  };
+
+  private proxyRequestUrl = (url: string) => {
+    const PROXY_URL = "http://cors-anywhere.herokuapp.com/";
+    return fetch(PROXY_URL + url, {
+      headers: {
+        Origin: ""
+      }
+    });
   };
 
   protected abstract _getList(): Promise<any>;
