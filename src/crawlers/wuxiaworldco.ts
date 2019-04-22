@@ -15,9 +15,12 @@ export default class WuxiaWorldCoCrawler extends BaseCrawler {
 
     const list = $(".novellist3 > ul > li > a");
     return list.map((index, el) => {
+      const title = $(el).text() || "";
+      const joinedTitle = title.split(" ").join("-");
       return new SearchOutput({
-        title: $(el).text() || "",
-        location: this.resolve($(el).attr("href"))
+        cover: `${this.url}/BookFiles/BookImages/${joinedTitle}.jpg`,
+        location: this.resolve($(el).attr("href")),
+        title,
       });
     });
   }
