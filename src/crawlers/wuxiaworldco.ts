@@ -16,9 +16,11 @@ export default class WuxiaWorldCoCrawler extends BaseCrawler {
     const list = $(".novellist3 > ul > li > a");
     return list.map((index, el) => {
       const title = $(el).text() || "";
-      const joinedTitle = title.split(" ").join("-");
+      const author = $(el).parent().text().split("/")[1] || "";
+      const cleanedTitle = title.replace(":", "?").split(" ").join("-");
       return new SearchOutput({
-        cover: `${this.url}/BookFiles/BookImages/${joinedTitle}.jpg`,
+        author,
+        cover: `${this.url}/BookFiles/BookImages/${cleanedTitle}.jpg`,
         location: this.resolve($(el).attr("href")),
         title,
       });
